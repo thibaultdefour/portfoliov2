@@ -1,9 +1,12 @@
-name: Deploy Portfolio
+name: Build and Deploy
 
 on:
   push:
     branches:
       - main  # Adjust this to your main branch name
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -15,12 +18,11 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          npm install  # Or any other command to install dependencies
-          npm run build  # Or any other command to build your portfolio
+          npm ci
+          npm run build
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.2
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages  # Or any other branch you want to deploy to
-          FOLDER: dist  # Or the folder where your built portfolio resides
+          folder: dist  # Or the folder where your built portfolio resides
+          branch: gh-pages  # Or any other branch you want to deploy to
