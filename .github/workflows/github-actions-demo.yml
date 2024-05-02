@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main  # Adjust this to your main branch name
+      - main
 
 permissions:
   contents: write
@@ -24,5 +24,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist  # Or the folder where your built portfolio resides
-          branch: gh-pages  # Or any other branch you want to deploy to
+          folder: dist
+          branch: gh-pages
